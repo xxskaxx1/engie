@@ -1,19 +1,18 @@
-<div class="modal fade" id="adicionar_operador_modal">
+<div class="modal fade" id="cargar_orden_modal">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header bg-info">
-                <h4 class="modal-title" style="color: white">Crear Operador</h4>
+                <h4 class="modal-title" style="color: white">Cargar Archivo</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{route('AdicionarOperadores')}}" method="POST">
+            <form action="{{route('CargarOrden')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" name="nombre" id="nombre" required autocomplete="off" style="text-transform: uppercase;">
+                            <input type="file" class="form-control" name="archivo" id="archivo" accept="application/vnd.ms-Excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required>
                         </div>
                     </div>
                 </div>

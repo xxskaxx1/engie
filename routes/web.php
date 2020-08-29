@@ -20,6 +20,7 @@ Route::post('IndexOrdenes','OrdenesController@indexOrdenes')->name('IndexOrdenes
 Route::post('AdicionarOrden','OrdenesController@adicionarOrden')->name('AdicionarOrden');
 Route::post('ModificarOrden','OrdenesController@modificarOrden')->name('ModificarOrden');
 Route::post('EliminarOrden','OrdenesController@eliminarOrden')->name('EliminarOrden');
+Route::post('CargarOrden','OrdenesController@cargarOrden')->name('CargarOrden');
 
 //Operadores
 Route::get('IndexOperadores','OperadoresController@indexOperadores');
@@ -29,5 +30,8 @@ Route::post('ModificarOperadores','OperadoresController@modificarOperadores')->n
 Route::post('EliminarOperadores','OperadoresController@eliminarOperadores')->name('EliminarOperadores');
 
 //Tipos
-Route::get('IndexTipos','OperadoresController@indexOperadores');
-Route::post('IndexTipos','OperadoresController@indexOperadores')->name('IndexTipos');
+Route::get('IndexTipos','TiposController@indexTipos');
+Route::post('IndexTipos','TiposController@indexTipos')->name('IndexTipos');
+Route::post('AdicionarTipos','TiposController@adicionarTipos')->name('AdicionarTipos');
+Route::post('ModificarTipos','TiposController@modificarTipos')->name('ModificarTipos');
+Route::post('EliminarTipos','TiposController@eliminarTipos')->name('EliminarTipos');

@@ -1,13 +1,13 @@
-<div class="modal fade" id="adicionar_operador_modal">
+<div class="modal fade" id="adicionar_tipo_modal">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header bg-info">
-                <h4 class="modal-title" style="color: white">Crear Operador</h4>
+                <h4 class="modal-title" style="color: white">Crear Tipo de orden</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{route('AdicionarOperadores')}}" method="POST">
+            <form action="{{route('AdicionarTipos')}}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="row">

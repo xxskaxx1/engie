@@ -12,72 +12,12 @@
         <!-- Styles -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
+
         <script src="https://use.fontawesome.com/fd2ae9c22d.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-
-            footer {
-              padding-top: 3rem;
-              padding-bottom: 3rem;
-            }
-
-            footer p {
-              margin-bottom: .25rem;
-            }
-        </style>
     </head>
     <body>
         <header>
@@ -107,21 +47,23 @@
         @if(isset($objOrdenes))
             <div class="row">
                 <div class="col-12 flex-center">
-                    <table class="table">
+                    <table class="table" id="ordenes">
                         <thead>
                             <tr>
-                                <th class="text-center" colspan="5">
+                                <th class="text-center" colspan="6">
                                     <h3>ORDENES</h3>
                                 </th>
-                                <th class="text-center" style="width: 15%;">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adicionar_orden_modal">Crear Orden<i class="fa fa-plus"></i></button>
+                                <th class="text-center" style="width: 20%;">
+                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#adicionar_orden_modal">Crear Orden <i class="fa fa-plus"></i></button>
+                                    <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#cargar_orden_modal">Carga Masiva <i class="fa fa-plus"></i></button>
                                 </th>
                             </tr>
                             <tr>
                                 <th class="text-center">ID</th>
+                                <th class="text-center">Operador</th>
                                 <th class="text-center">Fecha de creación</th>
                                 <th class="text-center">Fecha de asignación</th>
-                                <th class="text-center">Operador</th>
+                                <th class="text-center">Fecha de ejecución</th>
                                 <th class="text-center">Tipo</th>
                                 <th class="text-center">Acciones</th>
                             </tr>
@@ -130,9 +72,10 @@
                             @foreach($objOrdenes as $ordenes)
                                 <tr>
                                     <td class="text-center">{{$ordenes->id_orden}}</td>
+                                    <td class="text-left">{{$ordenes->nombre_operador}}</td>
                                     <td class="text-center">{{$ordenes->fecha_creacion}}</td>
                                     <td class="text-center">{{$ordenes->fecha_asignacion}}</td>
-                                    <td class="text-left">{{$ordenes->nombre_operador}}</td>
+                                    <td class="text-center">{{$ordenes->fecha_ejecucion}}</td>
                                     <td class="text-center">{{$ordenes->nombre_tipo}}</td>
                                     <td class="text-center">
                                         <button type="button" class="btn btn-primary" onclick="ModificarModal('{{$ordenes->id_orden}}','{{$ordenes->fecha_creacion}}','{{$ordenes->fecha_asignacion}}','{{$ordenes->fecha_ejecucion}}','{{$ordenes->id_operador}}','{{$ordenes->resultado}}','{{$ordenes->valor}}','{{$ordenes->id_tipo}}')">Modificar</button>
@@ -148,12 +91,10 @@
         @include('Ordenes.Adicionar')
         @include('Ordenes.Modificar')
         @include('Ordenes.Eliminar')
+        @include('Ordenes.Cargar')
     </body>
 </html>
 <script type="text/javascript">
-    $('#adicionar_orden_modal').on('shown.bs.modal', function () {
-      $('#myInput').trigger('focus');
-    })
     function ModificarModal(id_orden,fecha_creacion,fecha_asignacion,fecha_ejecucion,id_operador,resultado,valor,id_tipo){
         $('#mod_id_orden').val(id_orden);
         $('#mod_fecha_creacion').val(fecha_creacion);
@@ -168,5 +109,11 @@
     function EliminarModal(id_orden){
         $('#eliminar_id_orden').val(id_orden);
         $('#eliminar_orden_modal').modal('show');
+    }
+    function fechamin(valor){
+        $('#fecha_ejecucion').attr("min",valor);
+    }
+    function fechamax(valor){
+        $('#fecha_asignacion').attr("max",valor);
     }
 </script>

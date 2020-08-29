@@ -1,5 +1,5 @@
 <div class="modal fade" id="modificar_orden_modal">
-    <div class="modal-dialog modal-md">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-info">
                 <h4 class="modal-title" style="color: white">Modificar Orden</h4>

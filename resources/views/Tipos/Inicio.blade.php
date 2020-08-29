@@ -17,7 +17,67 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        
+        <style>
+            html, body {
+                background-color: #fff;
+                color: #636b6f;
+                font-family: 'Nunito', sans-serif;
+                font-weight: 200;
+                height: 100vh;
+                margin: 0;
+            }
+
+            .full-height {
+                height: 100vh;
+            }
+
+            .flex-center {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+
+            .position-ref {
+                position: relative;
+            }
+
+            .top-right {
+                position: absolute;
+                right: 10px;
+                top: 18px;
+            }
+
+            .content {
+                text-align: center;
+            }
+
+            .title {
+                font-size: 84px;
+            }
+
+            .links > a {
+                color: #636b6f;
+                padding: 0 25px;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
+            .m-b-md {
+                margin-bottom: 30px;
+            }
+
+            footer {
+              padding-top: 3rem;
+              padding-bottom: 3rem;
+            }
+
+            footer p {
+              margin-bottom: .25rem;
+            }
+        </style>
     </head>
     <body>
         <header>
@@ -44,17 +104,17 @@
             </nav>
 
         </header><br>
-        @if(isset($objOperadores))
+        @if(isset($objTipos))
             <div class="row">
                 <div class="col-12 flex-center">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th class="text-center" colspan="2">
-                                    <h3>OPERADORES</h3>
+                                    <h3>TIPOS DE ORDEN</h3>
                                 </th>
                                 <th class="text-center" style="width: 25%;">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adicionar_operador_modal">Crear Operador <i class="fa fa-plus"></i></button>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adicionar_tipo_modal">Crear Tipo <i class="fa fa-plus"></i></button>
                                 </th>
                             </tr>
                             <tr>
@@ -64,13 +124,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($objOperadores as $operadores)
+                            @foreach($objTipos as $tipos)
                                 <tr>
-                                    <td class="text-center">{{$operadores->id_operador}}</td>
-                                    <td class="text-left">{{$operadores->nombre}}</td>
+                                    <td class="text-center">{{$tipos->id_tipo}}</td>
+                                    <td class="text-left">{{$tipos->nombre}}</td>
                                     <td class="text-center">
-                                        <button type="button" class="btn btn-primary" onclick="ModificarModal('{{$operadores->id_operador}}','{{$operadores->nombre}}')">Modificar</button>
-                                        <button type="button" class="btn btn-danger" onclick="EliminarModal('{{$operadores->id_operador}}')">Eliminar</button>
+                                        <button type="button" class="btn btn-primary" onclick="ModificarModal('{{$tipos->id_tipo}}','{{$tipos->nombre}}')">Modificar</button>
+                                        <button type="button" class="btn btn-danger" onclick="EliminarModal('{{$tipos->id_tipo}}')">Eliminar</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -79,19 +139,19 @@
                 </div>
             </div>
         @endif
-        @include('Operadores.Adicionar')
-        @include('Operadores.Modificar')
-        @include('Operadores.Eliminar')
+        @include('Tipos.Adicionar')
+        @include('Tipos.Modificar')
+        @include('Tipos.Eliminar')
     </body>
 </html>
 <script type="text/javascript">
-    function ModificarModal(id_operador,nombre){
-        $('#mod_id_operador').val(id_operador);
+    function ModificarModal(id_tipo,nombre){
+        $('#mod_id_tipo').val(id_tipo);
         $('#mod_nombre').val(nombre);
-        $('#modificar_operador_modal').modal('show');
+        $('#modificar_tipo_modal').modal('show');
     }
-    function EliminarModal(id_operador){
-        $('#eliminar_id_operador').val(id_operador);
-        $('#eliminar_operador_modal').modal('show');
+    function EliminarModal(id_tipo){
+        $('#eliminar_id_tipo').val(id_tipo);
+        $('#eliminar_tipo_modal').modal('show');
     }
 </script>
