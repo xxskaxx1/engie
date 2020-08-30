@@ -39,6 +39,9 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="{{route('IndexTipos')}}">Tipos de orden <span class="sr-only"></span></a>
                         </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{route('TablaOrdenes')}}">Formulario 4 - Tabla<span class="sr-only"></span></a>
+                        </li>
                     </ul>
                 </div>
             </nav>

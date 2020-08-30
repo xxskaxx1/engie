@@ -35,3 +35,7 @@ Route::post('IndexTipos','TiposController@indexTipos')->name('IndexTipos');
 Route::post('AdicionarTipos','TiposController@adicionarTipos')->name('AdicionarTipos');
 Route::post('ModificarTipos','TiposController@modificarTipos')->name('ModificarTipos');
 Route::post('EliminarTipos','TiposController@eliminarTipos')->name('EliminarTipos');
+
+//Formulario 4 Vista tabla
+Route::get('TablaOrdenes','OrdenesController@tablaOrdenes');
+Route::post('TablaOrdenes','OrdenesController@tablaOrdenes')->name('TablaOrdenes');

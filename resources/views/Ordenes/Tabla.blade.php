@@ -46,34 +46,38 @@
             </nav>
 
         </header><br>
-        @if(isset($objTipos))
+        @if(isset($objOrdenes))
             <div class="row">
                 <div class="col-12 flex-center">
-                    <table class="table">
+                    <table id="ordenes" border="1" style="width: 100%;">
                         <thead>
                             <tr>
-                                <th class="text-center" colspan="2">
-                                    <h3>TIPOS DE ORDEN</h3>
-                                </th>
-                                <th class="text-center" style="width: 25%;">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#adicionar_tipo_modal">Crear Tipo <i class="fa fa-plus"></i></button>
+                                <th class="text-center" colspan="8">
+                                    <h3>ORDENES</h3>
                                 </th>
                             </tr>
                             <tr>
-                                <th class="text-center">ID</th>
-                                <th class="text-center">Nombre</th>
-                                <th class="text-center">Acciones</th>
+                                <th class="text-center">No. Orden</th>
+                                <th class="text-center">F. creación</th>
+                                <th class="text-center">Tipo</th>
+                                <th class="text-center">F. asignación</th>
+                                <th class="text-center">F.ejecución</th>
+                                <th class="text-center">Operador</th>
+                                <th class="text-center">Resultado</th>
+                                <th class="text-center">Valor</th>     
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($objTipos as $tipos)
+                            @foreach($objOrdenes as $ordenes)
                                 <tr>
-                                    <td class="text-center">{{$tipos->id_tipo}}</td>
-                                    <td class="text-left">{{$tipos->nombre}}</td>
-                                    <td class="text-center">
-                                        <button type="button" class="btn btn-primary" onclick="ModificarModal('{{$tipos->id_tipo}}','{{$tipos->nombre}}')">Modificar</button>
-                                        <button type="button" class="btn btn-danger" onclick="EliminarModal('{{$tipos->id_tipo}}')">Eliminar</button>
-                                    </td>
+                                    <td class="text-center">{{$ordenes->id_orden}}</td>
+                                    <td class="text-center">{{$ordenes->fecha_creacion}}</td>
+                                    <td class="text-center">{{$ordenes->nombre_tipo}}</td>
+                                    <td class="text-center">{{$ordenes->fecha_asignacion}}</td>
+                                    <td class="text-center">{{$ordenes->fecha_ejecucion}}</td>
+                                    <td class="text-left">{{$ordenes->nombre_operador}}</td>
+                                    <td class="text-center">{{$ordenes->resultado}}</td>
+                                    <td class="text-center">{{$ordenes->valor}}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -81,19 +85,5 @@
                 </div>
             </div>
         @endif
-        @include('Tipos.Adicionar')
-        @include('Tipos.Modificar')
-        @include('Tipos.Eliminar')
     </body>
 </html>
-<script type="text/javascript">
-    function ModificarModal(id_tipo,nombre){
-        $('#mod_id_tipo').val(id_tipo);
-        $('#mod_nombre').val(nombre);
-        $('#modificar_tipo_modal').modal('show');
-    }
-    function EliminarModal(id_tipo){
-        $('#eliminar_id_tipo').val(id_tipo);
-        $('#eliminar_tipo_modal').modal('show');
-    }
-</script>

@@ -53,4 +53,8 @@ class OrdenesController extends Controller{
         Excel::import(new OrdenTrabImport, 'uploads/'.$archivo->getClientOriginalName());
         return redirect('IndexOrdenes')->with('status','Se cargaron los registros exitosamente');
     }
+    public function tablaOrdenes(){
+        $objOrdenes=\DB::select("select ord.*, ope.nombre as nombre_operador, ope.id_operador, tip.nombre as nombre_tipo, tip.id_tipo from ordentrab ord inner join operadores ope on(ope.id_operador = ord.id_operador) inner join tipoorden tip on(tip.id_tipo = ord.id_tipo)");
+        return view('Ordenes.Tabla',compact('objOrdenes'));
+    }
 }
